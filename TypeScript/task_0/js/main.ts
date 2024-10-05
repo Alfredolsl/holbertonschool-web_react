@@ -15,19 +15,23 @@ const student2: Student = {
     firstName: 'Molly',
     lastName: 'Dog',
     age: 6,
-    location: 'Mexico'
+    location: 'Dogland'
 }
 
-const app = document.getElementById("app");
 const studentsList: Student[] = [student1, student2];
-const table: HTMLTableElement = document.createElement('table');
+const table = document.createElement('table');
 
-studentsList.forEach((student: Student): void => {
-	const newRow: HTMLTableRowElement = table.insertRow();
-	const newRowFirstName: HTMLTableCellElement = newRow.insertCell();
-	const newRowLocation: HTMLTableCellElement = newRow.insertCell();
-	newRowFirstName.innerHTML = student.firstName;
-	newRowLocation.innerHTML = student.location;
-})
+studentsList.forEach(student => {
+    const row = document.createElement('tr');
+    const firstNameCell = document.createElement('td');
+    const locationCell = document.createElement('td');
 
-app.appendChild(table);
+    firstNameCell.textContent = student.firstName;
+    locationCell.textContent = student.location;
+
+    row.appendChild(firstNameCell);
+    row.appendChild(locationCell);
+    table.appendChild(row);
+});
+
+document.body.append(table);
